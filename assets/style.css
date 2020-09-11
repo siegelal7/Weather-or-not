@@ -1,0 +1,37 @@
+.navbar-header {
+  margin: auto;
+  font-size: 2.7em;
+  color: white !important;
+}
+
+.btn {
+  width: 2em;
+  height: 1.8em;
+  position: absolute;
+}
+
+.fas {
+  height: 10em;
+  width: 10em;
+}
+.input {
+  float: left;
+}
+#search-prompt {
+  position: relative;
+  top: 1.5em;
+}
+.jumbotron {
+  width: 100vw;
+  height: 60vh;
+  /* TODO: change color */
+  margin-top: 5%;
+  background: white;
+  border: 2px solid black;
+}
+
+li {
+  width: 25%;
+  position: relative;
+  bottom: 27em;
+}
