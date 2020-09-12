@@ -34,11 +34,11 @@
     </button>
     <div class="jumbotron">
       <div class="container">
-        <h1 class="display-4">Fluid jumbotron</h1>
-        <p class="lead">
-          This is a modified jumbotron that occupies the entire horizontal space
-          of its parent.
-        </p>
+        <h2 id="city-date"></h2>
+        <p id="temp" class="weather-text"></p>
+        <p id="humidity" class="weather-text"></p>
+        <p id="wind" class="weather-text"></p>
+        <p id="uv" class="weather-text"></p>
       </div>
     </div>
     <div>
@@ -47,10 +47,10 @@
         <li class="list-group-item">Chicago</li>
         <li class="list-group-item">New York</li>
         <li class="list-group-item">Orlando</li>
-        <li class="list-group-item">San Francisco</li>
+        <!-- <li class="list-group-item">San Francisco</li>
         <li class="list-group-item">Seattle</li>
         <li class="list-group-item">Denver</li>
-        <li class="list-group-item">Austin</li>
+        <li class="list-group-item">Austin</li> -->
       </ul>
       <div class="day-cards">
         <h3>5-Day Forecast</h3>
@@ -130,12 +130,8 @@
         <a href="#">upgrade your browser</a> to improve your experience.
       </p>
     <![endif]-->
-
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="./assets/script.js"></script>
   </body>
 </html>
