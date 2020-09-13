@@ -58,7 +58,7 @@ $(document).ready(function () {
       // console.log(response);
       temp.text(`Temperature: ${response.main.temp}˚`);
       wind.text(`Wind Speed: ${response.wind.speed} MPH`);
-      today.text(`${val} ${momentDate}`);
+      today.text(`${val} (${momentDate})`);
       humidity.text(`${response.main.humidity}%`);
       var lon = response.coord.lon;
       var lat = response.coord.lat;
