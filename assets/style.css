@@ -1,3 +1,9 @@
+body {
+  background: #f2f1f1;
+}
+
+.navbar {
+}
 .navbar-header {
   margin: auto;
   font-size: 2.7em;
@@ -17,6 +23,7 @@
 #city-date {
   position: relative;
   bottom: 55px;
+  height: 10vh;
 }
 .weather-text {
   position: relative;
@@ -38,7 +45,7 @@
   float: right;
   /* TODO: change color */
   margin-top: 1%;
-  background: white;
+  background: skyblue;
   border: 2px solid black;
 }
 
@@ -46,6 +53,10 @@
   width: 20vw;
   /* z-index: 0; */
 }
+
+/* #currentIcon {
+  display: none;
+} */
 
 .day {
   background: skyblue;
@@ -63,6 +74,14 @@
   display: flex;
   float: right;
   padding-right: 1%;
+}
+
+#currentIcon {
+  /* float: right; */
+  height: 12%;
+  width: 12%;
+  position: absolute;
+  background: skyblue;
 }
 h3 {
   /* position: absolute; */

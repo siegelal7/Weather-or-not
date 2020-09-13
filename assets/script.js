@@ -36,6 +36,7 @@ $(document).ready(function () {
   var dayThreeIcon = $("#day-three-icon");
   var dayFourIcon = $("#day-four-icon");
   var dayFiveIcon = $("#day-five-icon");
+  // var currentIcon = $("#currentIcon");
   // var urlQueryTwo = `https://api.openweathermap.org/data/2.5/forecast?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
   // $.ajax({
   //   url: urlQueryTwo,
@@ -66,11 +67,20 @@ $(document).ready(function () {
       url: urlQuery,
       method: "GET",
     }).then(function (response) {
+      var todayIconUrl = `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`;
       // console.log(response);
       temp.text(`Temperature: ${response.main.temp}˚F`);
       wind.text(`Wind Speed: ${response.wind.speed} MPH`);
+      var todayIcon = $("<img>");
+      todayIcon.attr("src", todayIconUrl);
+      todayIcon.attr("style", "height:70%");
       today.text(`${val} (${momentDate})`);
+
+      today.append(todayIcon);
       humidity.text(`${response.main.humidity}%`);
+      // currentIcon.attr("style", "display:block");
+      // currentIcon.attr("src", todayIcon);
+
       var lon = response.coord.lon;
       var lat = response.coord.lat;
       // console.log(lon);
@@ -97,7 +107,7 @@ $(document).ready(function () {
         var iconThree = `http://openweathermap.org/img/wn/${resp.daily[2].weather[0].icon}@2x.png`;
         var iconFour = `http://openweathermap.org/img/wn/${resp.daily[3].weather[0].icon}@2x.png`;
         var iconFive = `http://openweathermap.org/img/wn/${resp.daily[4].weather[0].icon}@2x.png`;
-        console.log(resp);
+        // console.log(resp);
         uvString = uvString + resp.current.uvi;
         uv.text(`UV Index: ${uvString}`);
         if (parseFloat(uvString) < 3) {
