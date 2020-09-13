@@ -20,6 +20,11 @@ $(document).ready(function () {
   var dayThreeHum = $("#day-three-humidity");
   var dayFourHum = $("#day-four-humidity");
   var dayFiveHum = $("#day-five-humidity");
+  var dayOneDate = $("#day-one-date");
+  var dayTwoDate = $("#day-two-date");
+  var dayThreeDate = $("#day-three-date");
+  var dayFourDate = $("#day-four-date");
+  var dayFiveDate = $("#day-five-date");
   // var urlQueryTwo = `https://api.openweathermap.org/data/2.5/forecast?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
   // $.ajax({
   //   url: urlQueryTwo,
@@ -81,6 +86,11 @@ $(document).ready(function () {
       dayFourHum.text(r.list[27].main.humidity);
       dayFiveTemp.text(r.list[35].main.temp);
       dayFiveHum.text(r.list[35].main.humidity);
+      dayOneDate.text(r.list[3].dt_txt.substring(0, 10));
+      dayTwoDate.text(r.list[11].dt_txt.substring(0, 10));
+      dayThreeDate.text(r.list[19].dt_txt.substring(0, 10));
+      dayFourDate.text(r.list[27].dt_txt.substring(0, 10));
+      dayFiveDate.text(r.list[35].dt_txt.substring(0, 10));
     });
   });
 
