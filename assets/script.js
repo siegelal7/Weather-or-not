@@ -91,13 +91,26 @@ $(document).ready(function () {
         url: nextUrl2,
         method: "GET",
       }).then(function (resp) {
+        var uvString = "";
         var iconOne = `http://openweathermap.org/img/wn/${resp.daily[0].weather[0].icon}@2x.png`;
         var iconTwo = `http://openweathermap.org/img/wn/${resp.daily[1].weather[0].icon}@2x.png`;
         var iconThree = `http://openweathermap.org/img/wn/${resp.daily[2].weather[0].icon}@2x.png`;
         var iconFour = `http://openweathermap.org/img/wn/${resp.daily[3].weather[0].icon}@2x.png`;
         var iconFive = `http://openweathermap.org/img/wn/${resp.daily[4].weather[0].icon}@2x.png`;
         console.log(resp);
-        uv.text(`UV Index: ${resp.current.uvi}`);
+        uvString = uvString + resp.current.uvi;
+        uv.text(`UV Index: ${uvString}`);
+        if (parseFloat(uvString) < 3) {
+          uv.attr("style", "background:green");
+        } else if (parseFloat(uvString) < 6) {
+          uv.attr("style", "background:yellow");
+        } else if (parseFloat(uvString) < 8) {
+          uv.attr("style", "background:orange");
+        } else if (parseFloat(uvString) < 11) {
+          uv.attr("style", "background:red");
+        } else {
+          uv.attr("style", "background:purple");
+        }
         dayOneTemp.text(`Temp: ${resp.daily[1].temp.day}˚F`);
         dayOneHum.text(`Humidity: ${resp.daily[1].humidity}%`);
         dayTwoTemp.text(`Temp: ${resp.daily[2].temp.day}˚F`);

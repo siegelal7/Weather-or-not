@@ -85,6 +85,11 @@ h3 {
   width: 30%;
 }
 
+.uv-color {
+  max-width: 8vw;
+  /* background: red; */
+  /* color: red; */
+}
 /* li {
   width: 25%;
   position: relative;
