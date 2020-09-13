@@ -80,6 +80,11 @@ h3 {
   /* float:right; */
 }
 
+.icons {
+  height: 30%;
+  width: 30%;
+}
+
 /* li {
   width: 25%;
   position: relative;
