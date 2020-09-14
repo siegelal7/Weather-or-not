@@ -1,5 +1,9 @@
 body {
-  background: silver;
+  /* background: silver;
+   */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://wallpapercave.com/wp/aZSazBV.jpg");
 }
 
 .navbar {
@@ -39,12 +43,12 @@ body {
   float: right;
   /* TODO: change color */
   margin-top: 1%;
-  background: skyblue;
+  background: #56d1d8;
   border: 2px solid black;
 }
 
 .list-group-item {
-  background: skyblue;
+  background: #56d1d8;
 }
 .list-group-item:hover {
   color: red;
@@ -53,10 +57,11 @@ body {
 
 .history {
   width: 20vw;
+  position: fixed;
 }
 
 .day {
-  background: skyblue;
+  background: #56d1d8;
   border: 1px solid black;
   width: 215px;
   height: 200px;
@@ -76,7 +81,7 @@ body {
   height: 12%;
   width: 12%;
   position: absolute;
-  background: skyblue;
+  background: #56d1d8;
 }
 h3 {
   position: relative;

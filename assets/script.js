@@ -55,11 +55,6 @@ $(document).ready(function () {
   function searchAndPopulate(val) {
     var urlQuery = `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
 
-    // var urlTwo = `https://api.openweathermap.org/data/2.5/forecast?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
-    // console.log(val);
-    // storeObject = {
-    //   city: val,
-    // };
     if (searchHistory.includes(val) === false) {
       searchHistory.push(val);
       if (val !== null && val !== "") {
