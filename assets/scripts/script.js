@@ -90,11 +90,11 @@ $(document).ready(function () {
         method: "GET",
       }).then(function (resp) {
         var uvString = "";
-        var iconOne = `http://openweathermap.org/img/wn/${resp.daily[0].weather[0].icon}@2x.png`;
-        var iconTwo = `http://openweathermap.org/img/wn/${resp.daily[1].weather[0].icon}@2x.png`;
-        var iconThree = `http://openweathermap.org/img/wn/${resp.daily[2].weather[0].icon}@2x.png`;
-        var iconFour = `http://openweathermap.org/img/wn/${resp.daily[3].weather[0].icon}@2x.png`;
-        var iconFive = `http://openweathermap.org/img/wn/${resp.daily[4].weather[0].icon}@2x.png`;
+        var iconOne = `https://openweathermap.org/img/wn/${resp.daily[0].weather[0].icon}@2x.png`;
+        var iconTwo = `https://openweathermap.org/img/wn/${resp.daily[1].weather[0].icon}@2x.png`;
+        var iconThree = `https://openweathermap.org/img/wn/${resp.daily[2].weather[0].icon}@2x.png`;
+        var iconFour = `https://openweathermap.org/img/wn/${resp.daily[3].weather[0].icon}@2x.png`;
+        var iconFive = `https://openweathermap.org/img/wn/${resp.daily[4].weather[0].icon}@2x.png`;
         // console.log(resp);
         uvString = uvString + resp.current.uvi;
         uv.text(`UV Index: ${uvString}`);
