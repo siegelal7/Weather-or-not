@@ -68,6 +68,7 @@ $(document).ready(function () {
       url: urlQuery,
       method: "GET",
     }).then(function (response) {
+      console.log(response);
       var todayIconUrl = `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`;
       // console.log(response);
       temp.text(`Temperature: ${response.main.temp}˚F`);
@@ -75,7 +76,7 @@ $(document).ready(function () {
       var todayIcon = $("<img>");
       todayIcon.attr("src", todayIconUrl);
       todayIcon.attr("style", "height:70%");
-      today.text(`${val} (${momentDate})`);
+      today.text(`${response.name} (${momentDate})`);
 
       today.append(todayIcon);
       humidity.text(`${response.main.humidity}%`);
