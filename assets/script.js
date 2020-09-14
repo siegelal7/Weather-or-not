@@ -129,6 +129,11 @@ $(document).ready(function () {
         dayThreeDate.text(ThreeDays);
         dayFourDate.text(FourDays);
         dayFiveDate.text(FiveDays);
+        dayOneIcon.attr("style", "display:block");
+        dayTwoIcon.attr("style", "display:block");
+        dayThreeIcon.attr("style", "display:block");
+        dayFourIcon.attr("style", "display:block");
+        dayFiveIcon.attr("style", "display:block");
         dayOneIcon.attr("src", iconOne);
         dayTwoIcon.attr("src", iconTwo);
         dayThreeIcon.attr("src", iconThree);
@@ -147,7 +152,6 @@ $(document).ready(function () {
     var val = $(this).siblings("input").val();
     searchAndPopulate(val);
     // var urlQuery = `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
-    var urlAgain = `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
   });
   historyList.on("click", ".list-group-item", function () {
     searchAndPopulate($(this).text());

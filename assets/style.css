@@ -15,11 +15,7 @@ body {
   height: 1.8em;
   position: absolute;
 }
-/* 
-.fas {
-  height: 10em;
-  width: 10em;
-} */
+
 #city-date {
   position: relative;
   bottom: 55px;
@@ -30,10 +26,8 @@ body {
   bottom: 45px;
 }
 .input {
-  /* z-index: 100; */
   margin-top: 2rem;
   width: 14rem;
-  /* width:20vw; */
 }
 #search-prompt {
   position: absolute;
@@ -52,15 +46,14 @@ body {
 .list-group-item {
   background: skyblue;
 }
+.list-group-item:hover {
+  color: red;
+  box-shadow: 3px 3px 3px 3px black;
+}
 
 .history {
   width: 20vw;
-  /* z-index: 0; */
 }
-
-/* #currentIcon {
-  display: none;
-} */
 
 .day {
   background: skyblue;
@@ -71,7 +64,6 @@ body {
   margin-right: 1%;
 }
 .day-cards {
-  /* margin-left:auto; */
   padding-left: 0px;
   margin-right: auto;
   margin-top: 3%;
@@ -81,56 +73,23 @@ body {
 }
 
 #currentIcon {
-  /* float: right; */
   height: 12%;
   width: 12%;
   position: absolute;
   background: skyblue;
 }
 h3 {
-  /* position: absolute; */
-  /* top:2% */
   position: relative;
   bottom: 3em;
   left: 8em;
-  /* padding-top:100px; */
-  /* float:right; */
-  /* padding-left:475px; */
-  /* position: relative;
-    left:19em;
-    top:2.5em; */
-  /* position: absolute; */
-  /* float:right; */
 }
 
 .icons {
   height: 30%;
   width: 30%;
+  display: none;
 }
 
 .uv-color {
   max-width: 8vw;
-  /* background: red; */
-  /* color: red; */
 }
-/* li {
-  width: 25%;
-  position: relative;
-  bottom: 19em;
-}
-
-@media only screen and (max-height: 833px) {
-  li {
-    width: 25%;
-    position: relative;
-    bottom: 7em;
-  }
-} */
-
-/* .forecast-header {
-  font-size: 2.5rem;
-  float: right;
-  position: relative;
-  bottom: 6em;
-  right: 11em;
-} */
