@@ -154,3 +154,8 @@ h3 {
   text-align: center;
   justify-content: center;
 }
+#icon {
+  position: relative;
+  right: 0.5em;
+  bottom: 0.2em;
+}
