@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  var input = $("#search-prompt");
+  var input = $(".input");
   var submit = $(".submit");
   // var apikey = "a573ba9eea9e8c716df06e0ed9a541d6";
 
@@ -36,6 +36,8 @@ $(document).ready(function () {
   var dayThreeIcon = $("#day-three-icon");
   var dayFourIcon = $("#day-four-icon");
   var dayFiveIcon = $("#day-five-icon");
+  var historyList = $(".history");
+  buildHistoryList();
   // var currentIcon = $("#currentIcon");
   // var urlQueryTwo = `https://api.openweathermap.org/data/2.5/forecast?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
   // $.ajax({
@@ -48,26 +50,39 @@ $(document).ready(function () {
   //   return lon, lat;
   // });
   // var urlQuery;
-  submit.on("click", function (event) {
-    event.preventDefault();
-    //   console.log("test");
-    var val = $(this).siblings("input").val();
+  function buildHistoryList() {
+    historyList.empty();
+    var history = JSON.parse(localStorage.getItem("city"));
+    if (history !== null) {
+      searchHistory = history;
+    }
+    for (i = 0; i < searchHistory.length; i++) {
+      historyList.append(
+        $("<li class='list-group-item'>").text(searchHistory[i])
+      );
+    }
+  }
+
+  function searchAndPopulate(val) {
     var urlQuery = `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
 
-    var urlTwo = `https://api.openweathermap.org/data/2.5/forecast?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
+    // var urlTwo = `https://api.openweathermap.org/data/2.5/forecast?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
     // console.log(val);
-    storeObject = {
-      city: val,
-    };
-    searchHistory.push(storeObject);
-    localStorage.setItem("city", JSON.stringify(searchHistory));
+    // storeObject = {
+    //   city: val,
+    // };
+    if (searchHistory.includes(val) === false) {
+      searchHistory.push(val);
+      localStorage.setItem("city", JSON.stringify(searchHistory));
+    }
+
     //basic weather info
 
     $.ajax({
       url: urlQuery,
       method: "GET",
     }).then(function (response) {
-      var todayIconUrl = `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`;
+      var todayIconUrl = `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`;
       // console.log(response);
       temp.text(`Temperature: ${response.main.temp}˚F`);
       wind.text(`Wind Speed: ${response.wind.speed} MPH`);
@@ -78,24 +93,11 @@ $(document).ready(function () {
 
       today.append(todayIcon);
       humidity.text(`${response.main.humidity}%`);
-      // currentIcon.attr("style", "display:block");
-      // currentIcon.attr("src", todayIcon);
 
       var lon = response.coord.lon;
       var lat = response.coord.lat;
-      // console.log(lon);
-      // console.log(lat);
 
       var nextUrl2 = `https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,minutely&appid=a573ba9eea9e8c716df06e0ed9a541d6&lat=${lat}&lon=${lon}&units=imperial`;
-
-      //   $.ajax({
-      //     url: nextUrl,
-      //     method: "GET",
-      //   }).then(function (resp) {
-      //     // console.log(resp);
-      //     uv.text(`UV Index: ${resp.value}`);
-      //   });
-      // });
 
       $.ajax({
         url: nextUrl2,
@@ -142,9 +144,27 @@ $(document).ready(function () {
         dayFourIcon.attr("src", iconFour);
         dayFiveIcon.attr("src", iconFive);
       });
-    });
-  });
 
+      buildHistoryList();
+    });
+  }
+
+  submit.on("click", function (event) {
+    event.preventDefault();
+    //   console.log("test");
+    var val = $(this).siblings("input").val();
+    searchAndPopulate(val);
+    // var urlQuery = `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
+    var urlAgain = `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
+    // historyList.on("click", ".list-group-item", function () {
+    //   $.ajax({
+    //     url,
+    //   });
+    // });
+  });
+  historyList.on("click", ".list-group-item", function () {
+    searchAndPopulate($(this).text());
+  });
   // function getWeather(val) {
   //   $.ajax({
   //     url: urlQuery,
