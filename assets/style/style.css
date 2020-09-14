@@ -2,7 +2,7 @@ body {
   /* background: silver;
    */
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: auto;
   background-image: url("https://wallpapercave.com/wp/aZSazBV.jpg");
 }
 
@@ -46,9 +46,22 @@ body {
   background: #56d1d8;
   border: 2px solid black;
 }
+@media only screen and (max-width: 1377px) {
+  .jumbotron {
+    width: 65vw;
+    height: 40vh;
+    float: right;
+    /* TODO: change color */
+    margin-top: 1%;
+    background: #56d1d8;
+    border: 2px solid black;
+    /* font-size: 1em; */
+  }
+}
 
 .list-group-item {
   background: #56d1d8;
+  z-index: 0;
 }
 .list-group-item:hover {
   color: red;
@@ -67,6 +80,40 @@ body {
   height: 200px;
   margin-left: 1%;
   margin-right: 1%;
+}
+@media only screen and (max-width: 1377px) {
+  .day {
+    background: #56d1d8;
+    border: 1px solid black;
+    width: 140px;
+    height: 135px;
+    font-size: 0.5em;
+    /* margin-left: 1%;
+    margin-right: 1%; */
+  }
+}
+@media only screen and (max-width: 998px) {
+  .day {
+    background: #56d1d8;
+    border: 1px solid black;
+    width: 90px;
+    height: 135px;
+    /* margin-left: 1%;
+    margin-right: 1%; */
+  }
+}
+@media only screen and (max-width: 660px) {
+  .day {
+    background: #56d1d8;
+    border: 1px solid black;
+    width: 70px;
+    height: 135px;
+    float: right;
+    font-size: 0.5em;
+    z-index: 1;
+    /* margin-left: 1%;
+    margin-right: 1%; */
+  }
 }
 .day-cards {
   padding-left: 0px;
@@ -97,4 +144,13 @@ h3 {
 
 .uv-color {
   max-width: 8vw;
+}
+
+.footer {
+  /* background-color: silver !important; */
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
 }
