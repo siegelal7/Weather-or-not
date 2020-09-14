@@ -1,5 +1,5 @@
 body {
-  background: #f2f1f1;
+  background: silver;
 }
 
 .navbar {
@@ -47,6 +47,10 @@ body {
   margin-top: 1%;
   background: skyblue;
   border: 2px solid black;
+}
+
+.list-group-item {
+  background: skyblue;
 }
 
 .history {

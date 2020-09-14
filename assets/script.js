@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  var input = $(".input");
+  var input = $("#input");
   var submit = $(".submit");
   // var apikey = "a573ba9eea9e8c716df06e0ed9a541d6";
 
@@ -38,18 +38,7 @@ $(document).ready(function () {
   var dayFiveIcon = $("#day-five-icon");
   var historyList = $(".history");
   buildHistoryList();
-  // var currentIcon = $("#currentIcon");
-  // var urlQueryTwo = `https://api.openweathermap.org/data/2.5/forecast?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
-  // $.ajax({
-  //   url: urlQueryTwo,
-  //   method: "GET",
-  // }).then(function (resp) {
-  //   console.log(resp);
-  //   var lat = resp.coord.lat;
-  //   var lon = resp.coord.lon;
-  //   return lon, lat;
-  // });
-  // var urlQuery;
+
   function buildHistoryList() {
     historyList.empty();
     var history = JSON.parse(localStorage.getItem("city"));
@@ -73,7 +62,9 @@ $(document).ready(function () {
     // };
     if (searchHistory.includes(val) === false) {
       searchHistory.push(val);
-      localStorage.setItem("city", JSON.stringify(searchHistory));
+      if (val !== null && val !== "") {
+        localStorage.setItem("city", JSON.stringify(searchHistory));
+      }
     }
 
     //basic weather info
@@ -151,26 +142,14 @@ $(document).ready(function () {
 
   submit.on("click", function (event) {
     event.preventDefault();
+    input.text("");
     //   console.log("test");
     var val = $(this).siblings("input").val();
     searchAndPopulate(val);
     // var urlQuery = `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
     var urlAgain = `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
-    // historyList.on("click", ".list-group-item", function () {
-    //   $.ajax({
-    //     url,
-    //   });
-    // });
   });
   historyList.on("click", ".list-group-item", function () {
     searchAndPopulate($(this).text());
   });
-  // function getWeather(val) {
-  //   $.ajax({
-  //     url: urlQuery,
-  //     method: "GET",
-  //   }).then(function (response) {
-  //     console.log(response);
-  //   });
-  // }
 });
