@@ -57,7 +57,7 @@ $(document).ready(function () {
 
     if (searchHistory.includes(val) === false) {
       searchHistory.push(val);
-      if (val !== null && val !== "") {
+      if (val !== null && val !== "" && val !== " ") {
         localStorage.setItem("city", JSON.stringify(searchHistory));
       }
     }
@@ -68,7 +68,7 @@ $(document).ready(function () {
       url: urlQuery,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
+      // console.log(response);
       var todayIconUrl = `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`;
       // console.log(response);
       temp.text(`Temperature: ${response.main.temp}˚F`);
