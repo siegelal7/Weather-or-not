@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  // establish all/most of the variables i'm gonna need for DOM manipulation
   var input = $("#input");
   var submit = $(".submit");
   // var apikey = "a573ba9eea9e8c716df06e0ed9a541d6";
@@ -15,7 +16,6 @@ $(document).ready(function () {
   var ThreeDays = moment().add(3, "days").format("M/D/YYYY");
   var FourDays = moment().add(4, "days").format("M/D/YYYY");
   var FiveDays = moment().add(5, "days").format("M/D/YYYY");
-  // console.log(tmrw);
   var dayOneTemp = $("#day-one-temp");
   var dayTwoTemp = $("#day-two-temp");
   var dayThreeTemp = $("#day-three-temp");
@@ -37,8 +37,10 @@ $(document).ready(function () {
   var dayFourIcon = $("#day-four-icon");
   var dayFiveIcon = $("#day-five-icon");
   var historyList = $(".history");
+  //calling the below function to load the list of previously searched cities
   buildHistoryList();
 
+  //add the search to the history list by setting the empty array initialized above equal to the localstorage values if they're valid
   function buildHistoryList() {
     historyList.empty();
     var history = JSON.parse(localStorage.getItem("city"));
@@ -52,6 +54,7 @@ $(document).ready(function () {
     }
   }
 
+  //massive function (which could easily have been refactored to more than 1 function) to make api call and populate the elements on the page with results
   function searchAndPopulate(val) {
     var urlQuery = `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
 
@@ -68,9 +71,7 @@ $(document).ready(function () {
       url: urlQuery,
       method: "GET",
     }).then(function (response) {
-      // console.log(response);
       var todayIconUrl = `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`;
-      // console.log(response);
       temp.text(`Temperature: ${response.main.temp}˚F`);
       wind.text(`Wind Speed: ${response.wind.speed} MPH`);
       var todayIcon = $("<img>");
@@ -85,20 +86,21 @@ $(document).ready(function () {
       var lat = response.coord.lat;
 
       var nextUrl2 = `https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,minutely&appid=a573ba9eea9e8c716df06e0ed9a541d6&lat=${lat}&lon=${lon}&units=imperial`;
-
+      // another api call inside the first one to obtain forecast and uvi
       $.ajax({
         url: nextUrl2,
         method: "GET",
       }).then(function (resp) {
         var uvString = "";
+        //these variables are the weather icons api call sites for the various days in forecast
         var iconOne = `https://openweathermap.org/img/wn/${resp.daily[0].weather[0].icon}@2x.png`;
         var iconTwo = `https://openweathermap.org/img/wn/${resp.daily[1].weather[0].icon}@2x.png`;
         var iconThree = `https://openweathermap.org/img/wn/${resp.daily[2].weather[0].icon}@2x.png`;
         var iconFour = `https://openweathermap.org/img/wn/${resp.daily[3].weather[0].icon}@2x.png`;
         var iconFive = `https://openweathermap.org/img/wn/${resp.daily[4].weather[0].icon}@2x.png`;
-        // console.log(resp);
         uvString = uvString + resp.current.uvi;
         uv.text(`UV Index: ${uvString}`);
+        //this if/else if chain will set the color for the uv index based on how high it is
         if (parseFloat(uvString) < 3) {
           uv.attr("style", "background:green");
         } else if (parseFloat(uvString) < 6) {
@@ -108,8 +110,9 @@ $(document).ready(function () {
         } else if (parseFloat(uvString) < 11) {
           uv.attr("style", "background:red");
         } else {
-          uv.attr("style", "background:purple");
+          uv.attr("style", "background:purple; color:white");
         }
+        //I could've written a for loop here, but because I hard coded my html this is honestly just easier right now...
         dayOneTemp.text(`Temp: ${resp.daily[1].temp.day}˚F`);
         dayOneHum.text(`Humidity: ${resp.daily[1].humidity}%`);
         dayTwoTemp.text(`Temp: ${resp.daily[2].temp.day}˚F`);
@@ -136,11 +139,11 @@ $(document).ready(function () {
         dayFourIcon.attr("src", iconFour);
         dayFiveIcon.attr("src", iconFive);
       });
-
+      //calling this function again to add the new value searched to history
       buildHistoryList();
     });
   }
-
+  //event listener for the submit button- calls that function above and captures the value entered by the  user
   submit.on("click", function (event) {
     event.preventDefault();
     input.text("");
@@ -149,6 +152,7 @@ $(document).ready(function () {
     searchAndPopulate(val);
     // var urlQuery = `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=a573ba9eea9e8c716df06e0ed9a541d6&units=imperial`;
   });
+  //finally, here's an event listener for the history list- the 2nd arg is a "selector" which delegates which specific descendant item we click on
   historyList.on("click", ".list-group-item", function () {
     searchAndPopulate($(this).text());
   });
