@@ -37,6 +37,7 @@ $(document).ready(function () {
   var dayFourIcon = $("#day-four-icon");
   var dayFiveIcon = $("#day-five-icon");
   var historyList = $(".history");
+
   //calling the below function to load the list of previously searched cities
   buildHistoryList();
 
@@ -113,6 +114,13 @@ $(document).ready(function () {
           uv.attr("style", "background:purple; color:white");
         }
         //I could've written a for loop here, but because I hard coded my html this is honestly just easier right now...
+        //TODO: finish this loop to simplify below
+        // for (i = 1; i < 6; i++) {
+        //   var dayTemp = $("#day-" + i + "-temp");
+        //   dayTemp.text(`Temp: ${resp.daily[i].temp.day}˚F`);
+        //   var dayHum = $(`#day-${i}-humidity`);
+        //   dayHum.text(`Humidity: ${resp.daily[i].humidity}%`);
+        // }
         dayOneTemp.text(`Temp: ${resp.daily[1].temp.day}˚F`);
         dayOneHum.text(`Humidity: ${resp.daily[1].humidity}%`);
         dayTwoTemp.text(`Temp: ${resp.daily[2].temp.day}˚F`);
